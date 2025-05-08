@@ -180,7 +180,7 @@ def main():
     elif args.surrogate == 'triangle':
         surrogate_function = surrogate_sj.PiecewiseQuadratic()
 
-    neuron_model = neuron.SLTTNeuron
+    neuron_model = neuron.TASBNeuron
 
     if args.dataset == 'cifar10' or args.dataset == 'cifar100':
         net = spiking_resnet.__dict__[args.model](neuron=neuron_model, num_classes=num_classes, neuron_dropout=args.drop_rate,
@@ -249,7 +249,7 @@ def main():
     ##########################################################
     # output setting
     ##########################################################
-    out_dir = os.path.join(args.out_dir, f'SLTTK{args.K}_{args.dataset}_{args.model}_{args.name}_T{args.T}_tau{args.tau}_e{args.epochs}_bs{args.b}_{args.opt}_lr{args.lr}_wd{args.weight_decay}_SG_{args.surrogate}_drop{args.drop_rate}_losslamb{args.loss_lambda}_')
+    out_dir = os.path.join(args.out_dir, f'TASBK{args.K}_{args.dataset}_{args.model}_{args.name}_T{args.T}_tau{args.tau}_e{args.epochs}_bs{args.b}_{args.opt}_lr{args.lr}_wd{args.weight_decay}_SG_{args.surrogate}_drop{args.drop_rate}_losslamb{args.loss_lambda}_')
 
     if args.lr_scheduler == 'CosALR':
         out_dir += f'CosALR_{args.T_max}'
